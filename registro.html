@@ -1,1 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registro | XA JUUN</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #399C7F, #9B5DE5);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .register-box {
+      background: #FAFAFA;
+      padding: 2rem;
+      border-radius: 18px;
+      width: 90%;
+      max-width: 380px;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+      text-align: center;
+      animation: floatIn 1.2s ease-out;
+    }
+
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+
+    p {
+      font-size: 0.95rem;
+      margin-bottom: 1.5rem;
+    }
+
+    input {
+      width: 100%;
+      padding: 11px;
+      margin: 0.5rem 0;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 1rem;
+      background: #FFD93D;
+      border: none;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      background: #FF7F50;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.25);
+    }
+
+    a {
+      display: block;
+      margin-top: 1rem;
+      color: #4169E1;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="register-box">
+    <h1>Únete a XA JUUN 🌊</h1>
+    <p>Forma parte de la comunidad surf</p>
+
+    <form>
+      <input type="text" placeholder="Nombre" required>
+      <input type="email" placeholder="Correo" required>
+      <input type="password" placeholder="Contraseña" required>
+      <input type="password" placeholder="Confirmar contraseña" required>
+
+      <button type="submit">Crear cuenta</button>
+    </form>
+
+    <a href="signin.html">¿Ya tienes cuenta? Inicia sesión</a>
+    <a href="index.html">← Volver a la tienda</a>
+  </div>
+
+</body>
+</html>
 
