@@ -62,4 +62,79 @@
     a {
       display: block;
       margin-top: 1rem;
-      color: #4169E
+      color: #4169E1;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="register-box">
+    <h1>Únete a XA JUUN 🌊</h1>
+    <p>Forma parte de la comunidad surf</p>
+
+    <form id="registroForm">
+      <input type="text" id="nombre" placeholder="Nombre" required>
+      <input type="email" id="email" placeholder="Correo" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <input type="password" id="confirm" placeholder="Confirmar contraseña" required>
+
+      <button type="submit">Crear cuenta</button>
+    </form>
+
+    <p id="msg"></p>
+
+    <a href="signin.html">¿Ya tienes cuenta? Inicia sesión</a>
+    <a href="index.html">← Volver a la tienda</a>
+  </div>
+
+<script>
+const form = document.getElementById("registroForm");
+const msg = document.getElementById("msg");
+
+form.addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const confirm = document.getElementById("confirm").value;
+
+  if (password !== confirm) {
+    msg.innerText = "Las contraseñas no coinciden 🌊";
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbxy6_o8DNnptNb0BMSUFuQ5TEvKwQrZkAYbNTsnip-UYOFVzzRanX9mpoTcgOSDuzkR/exec", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ nombre, email, password })
+  })
+  .then(response => response.json())
+  .then(data => {
+    if (data.status === "success") {
+      msg.innerText = "Registro exitoso 🤙";
+      form.reset();
+    } else {
+      msg.innerText = "Error del servidor";
+      console.log(data);
+    }
+  })
+  .catch(error => {
+    msg.innerText = "Error al registrar";
+    console.error(error);
+  });
+});
+</script>
+
+</body>
+</html>
+
