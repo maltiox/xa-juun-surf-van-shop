@@ -94,18 +94,53 @@
     <h1>Únete a XA JUUN 🌊</h1>
     <p>Forma parte de la comunidad surf</p>
 
-    <form>
-      <input type="text" placeholder="Nombre" required>
-      <input type="email" placeholder="Correo" required>
-      <input type="password" placeholder="Contraseña" required>
-      <input type="password" placeholder="Confirmar contraseña" required>
+   <form id="registroForm">
+  <input type="text" id="nombre" placeholder="Nombre" required>
+  <input type="email" id="email" placeholder="Correo" required>
+  <input type="password" id="password" placeholder="Contraseña" required>
+  <input type="password" id="confirm" placeholder="Confirmar contraseña" required>
 
-      <button type="submit">Crear cuenta</button>
-    </form>
+  <button type="submit">Crear cuenta</button>
+</form>
+
+<p id="msg"></p>
+
 
     <a href="signin.html">¿Ya tienes cuenta? Inicia sesión</a>
     <a href="index.html">← Volver a la tienda</a>
   </div>
+<script>
+const form = document.getElementById("registroForm");
+const msg = document.getElementById("msg");
+
+form.addEventListener("submit", e => {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  const confirm = document.getElementById("confirm").value;
+
+  if (password !== confirm) {
+    msg.innerText = "Las contraseñas no coinciden 🌊";
+    return;
+  }
+
+  fetch("https://script.google.com/macros/s/AKfycbzKugZdIBSnB9nyvBxdULhVwGa5sM7Kqf6LAv6CoOqJVRXEwIomTpk3l4iuFMTmK8ur/exec", {
+    method: "POST",
+    body: JSON.stringify({ nombre, email, password }),
+    headers: { "Content-Type": "application/json" }
+  })
+  .then(res => res.json())
+  .then(data => {
+    msg.innerText = "Registro exitoso 🤙 Bienvenido a XA JUUN";
+    form.reset();
+  })
+  .catch(() => {
+    msg.innerText = "Error al registrar, intenta de nuevo";
+  });
+});
+</script>
 
 </body>
 </html>
