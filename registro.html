@@ -24,27 +24,6 @@
       max-width: 380px;
       box-shadow: 0 12px 30px rgba(0,0,0,0.25);
       text-align: center;
-      animation: floatIn 1.2s ease-out;
-    }
-
-    @keyframes floatIn {
-      from {
-        opacity: 0;
-        transform: translateY(15px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    h1 {
-      margin-bottom: 0.5rem;
-    }
-
-    p {
-      font-size: 0.95rem;
-      margin-bottom: 1.5rem;
     }
 
     input {
@@ -75,73 +54,12 @@
       box-shadow: 0 8px 18px rgba(0,0,0,0.25);
     }
 
-    a {
-      display: block;
+    #msg {
       margin-top: 1rem;
-      color: #4169E1;
-      text-decoration: none;
       font-size: 0.9rem;
     }
 
-    a:hover {
-      text-decoration: underline;
-    }
-  </style>
-</head>
-<body>
-
-  <div class="register-box">
-    <h1>Únete a XA JUUN 🌊</h1>
-    <p>Forma parte de la comunidad surf</p>
-
-   <form id="registroForm">
-  <input type="text" id="nombre" placeholder="Nombre" required>
-  <input type="email" id="email" placeholder="Correo" required>
-  <input type="password" id="password" placeholder="Contraseña" required>
-  <input type="password" id="confirm" placeholder="Confirmar contraseña" required>
-
-  <button type="submit">Crear cuenta</button>
-</form>
-
-<p id="msg"></p>
-
-
-    <a href="signin.html">¿Ya tienes cuenta? Inicia sesión</a>
-    <a href="index.html">← Volver a la tienda</a>
-  </div>
-<script>
-const form = document.getElementById("registroForm");
-const msg = document.getElementById("msg");
-
-form.addEventListener("submit", e => {
-  e.preventDefault();
-
-  const nombre = document.getElementById("nombre").value;
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-  const confirm = document.getElementById("confirm").value;
-
-  if (password !== confirm) {
-    msg.innerText = "Las contraseñas no coinciden 🌊";
-    return;
-  }
-
-  fetch("https://script.google.com/macros/s/AKfycbzKugZdIBSnB9nyvBxdULhVwGa5sM7Kqf6LAv6CoOqJVRXEwIomTpk3l4iuFMTmK8ur/exec", {
-    method: "POST",
-    body: JSON.stringify({ nombre, email, password }),
-    headers: { "Content-Type": "application/json" }
-  })
-  .then(res => res.json())
-  .then(data => {
-    msg.innerText = "Registro exitoso 🤙 Bienvenido a XA JUUN";
-    form.reset();
-  })
-  .catch(() => {
-    msg.innerText = "Error al registrar, intenta de nuevo";
-  });
-});
-</script>
-
-</body>
-</html>
-
+    a {
+      display: block;
+      margin-top: 1rem;
+      color: #4169E
