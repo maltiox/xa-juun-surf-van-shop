@@ -113,27 +113,23 @@ form.addEventListener("submit", function(e) {
 
   fetch("https://script.google.com/macros/s/AKfycbxy6_o8DNnptNb0BMSUFuQ5TEvKwQrZkAYbNTsnip-UYOFVzzRanX9mpoTcgOSDuzkR/exec", {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ nombre, email, password })
+    mode: "no-cors",
+    body: JSON.stringify({
+      nombre: nombre,
+      email: email,
+      password: password
+    })
   })
-  .then(response => response.json())
-  .then(data => {
-    if (data.status === "success") {
-      msg.innerText = "Registro exitoso 🤙";
-      form.reset();
-    } else {
-      msg.innerText = "Error del servidor";
-      console.log(data);
-    }
+  .then(() => {
+    msg.innerText = "Registro enviado 🤙 revisa en 3 segundos";
+    form.reset();
   })
-  .catch(error => {
+  .catch(() => {
     msg.innerText = "Error al registrar";
-    console.error(error);
   });
 });
 </script>
+
 
 </body>
 </html>
