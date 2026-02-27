@@ -1,1 +1,87 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music Artist</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom, #009b3a, #fcd116, #ce1126);
+    text-align: center;
+    color: white;
+}
+
+/* Título flotante */
+.floating-title {
+    margin-top: 40px;
+    font-size: 40px;
+    font-weight: bold;
+    animation: float 3s ease-in-out infinite;
+    text-shadow: 2px 2px 8px black;
+}
+
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Contenedor */
+.container {
+    margin-top: 80px;
+}
+
+/* Botones */
+.link-button {
+    display: inline-block;
+    margin: 20px;
+    padding: 15px 30px;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+/* Colores rastas */
+.soundcloud {
+    background-color: #fcd116;
+}
+
+.youtube {
+    background-color: #ce1126;
+    color: white;
+}
+
+.link-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 15px black;
+}
+</style>
+
+</head>
+<body>
+
+<h1 class="floating-title">Welcome to the Music Artist Page</h1>
+
+<div class="container">
+    <a class="link-button soundcloud" 
+       href="https://soundcloud.com/jos-avila-1/mas-paz_leon-maya?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" 
+       target="_blank">
+       🎧 Listen on SoundCloud
+    </a>
+
+    <a class="link-button youtube" 
+       href="https://youtu.be/xd9cXU4K29g?si=T3P7WYCzmBYkstEQ" 
+       target="_blank">
+       ▶ Watch on YouTube
+    </a>
+</div>
+
+</body>
+</html>
