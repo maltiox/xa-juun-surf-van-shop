@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Music Artist</title>
+<title>El Chepe Reggae</title>
 
 <style>
 body {
@@ -13,26 +12,29 @@ body {
     background: linear-gradient(to bottom, #009b3a, #fcd116, #ce1126);
     text-align: center;
     color: white;
+    padding: 20px;
 }
 
 /* Título flotante */
 .floating-title {
-    margin-top: 40px;
-    font-size: 40px;
+    margin-top: 30px;
+    font-size: 42px;
     font-weight: bold;
     animation: float 3s ease-in-out infinite;
-    text-shadow: 2px 2px 8px black;
+    text-shadow: 2px 2px 10px black;
 }
 
 @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-15px); }
+    50% { transform: translateY(-12px); }
     100% { transform: translateY(0px); }
 }
 
-/* Contenedor */
-.container {
-    margin-top: 80px;
+/* Subtítulo */
+.subtitle {
+    font-size: 26px;
+    margin-top: 40px;
+    text-shadow: 1px 1px 8px black;
 }
 
 /* Botones */
@@ -42,15 +44,14 @@ body {
     padding: 15px 30px;
     font-size: 18px;
     text-decoration: none;
-    color: black;
     font-weight: bold;
     border-radius: 10px;
     transition: 0.3s;
 }
 
-/* Colores rastas */
 .soundcloud {
     background-color: #fcd116;
+    color: black;
 }
 
 .youtube {
@@ -62,14 +63,27 @@ body {
     transform: scale(1.1);
     box-shadow: 0 0 15px black;
 }
-</style>
 
+/* Descripción */
+.description {
+    max-width: 900px;
+    margin: 60px auto;
+    text-align: left;
+    background: rgba(0,0,0,0.6);
+    padding: 30px;
+    border-radius: 15px;
+    line-height: 1.7;
+}
+</style>
 </head>
+
 <body>
 
 <h1 class="floating-title">Welcome to the Music Artist Page</h1>
 
-<div class="container">
+<h2 class="subtitle">El Chepe Reggae</h2>
+
+<div>
     <a class="link-button soundcloud" 
        href="https://soundcloud.com/jos-avila-1/mas-paz_leon-maya?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing" 
        target="_blank">
@@ -81,6 +95,49 @@ body {
        target="_blank">
        ▶ Watch on YouTube
     </a>
+</div>
+
+<div class="description">
+
+Soy músico desde los 12 años, y desde entonces supe que la música era más que sonido — era misión.
+
+A los 24 comenzó el verdadero viaje: guitarra en mano, subiéndome a los buses de la Ciudad de Guatemala, llevando canciones a la gente junto a mi hermano Douglas Sagastume. La calle fue mi escuela, el público mi maestro y cada canción una semilla sembrada.
+
+De esa experiencia nació “Más Paz del León Maya”, un proyecto con esencia reggae, conciencia y mensaje positivo. Música con raíz, con alma, con propósito.
+
+He cantado frente a cientos de personas cada día, aprendiendo que el arte es servicio y que se puede vivir con dignidad compartiendo vibración, verdad y buena energía.
+
+Mi propuesta en vivo es auténtica, cercana y poderosa — perfecta para festivales, eventos culturales y espacios donde la música conecta con el corazón.
+
+Sun, roots & positive vibration.  
+La historia sigue escribiéndose.
+
+<br><br>
+
+I’ve been a musician since I was 12, and from early on I knew music was more than sound — it was purpose.
+
+At 24, the real journey began. With my guitar in hand, I performed on the buses of Guatemala City alongside my brother Douglas Sagastume. The streets became my school, the people my teachers, and every song a seed planted.
+
+From that experience, “Más Paz del León Maya” was born — a roots-inspired reggae project carrying awareness, identity, and positive vibration.
+
+Performing daily in front of hundreds of people shaped my energy and stage presence. My live shows are authentic, warm, and powerful — ideal for festivals, cultural events, and venues that value real connection.
+
+Sun, roots & positive vibes.  
+The journey continues.
+
+<br><br>
+
+Ich bin Musiker seit meinem 12. Lebensjahr und wusste früh, dass Musik mehr ist als Klang — sie ist Berufung.
+
+Mit 24 begann meine echte Reise. Mit meiner Gitarre trat ich in den Bussen von Guatemala-Stadt auf, gemeinsam mit meinem Bruder Douglas Sagastume. Die Straße war meine Schule, die Menschen mein Publikum und jede Melodie ein gesäter Samen.
+
+Aus dieser Erfahrung entstand „Más Paz del León Maya“ — ein Roots-Reggae-Projekt mit Bewusstsein, Identität und positiver Energie.
+
+Meine Live-Auftritte sind authentisch, nahbar und kraftvoll — perfekt für Festivals, kulturelle Events und Bühnen am Meer oder unter freiem Himmel.
+
+Sonne, Roots und positive Vibration.  
+Die Reise geht weiter.
+
 </div>
 
 </body>
