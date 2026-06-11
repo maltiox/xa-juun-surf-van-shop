@@ -1,1 +1,557 @@
+<!DOCTYPE html>
+<html lang="es">
 
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Dark Tattoo Calculator</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Georgia,serif;
+}
+
+
+body{
+
+background:#0b0b0f;
+color:#ddd;
+padding:30px;
+
+}
+
+
+.container{
+
+max-width:950px;
+margin:auto;
+background:#15151c;
+padding:30px;
+border-radius:15px;
+border:1px solid #4b0082;
+box-shadow:0 0 25px #4b0082;
+
+}
+
+
+h1{
+
+text-align:center;
+color:#b026ff;
+margin-bottom:30px;
+font-size:32px;
+
+}
+
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+
+}
+
+
+label{
+
+color:#ccc;
+margin-bottom:5px;
+
+}
+
+
+input,select{
+
+padding:12px;
+background:#080808;
+color:white;
+border:1px solid #6a0dad;
+border-radius:8px;
+
+}
+
+
+
+button{
+
+margin-top:25px;
+width:100%;
+padding:15px;
+
+background:#6a0dad;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
+
+
+button:hover{
+
+background:#8b2be2;
+
+}
+
+
+
+.resultados{
+
+margin-top:30px;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+
+gap:15px;
+
+}
+
+
+
+.card{
+
+background:#0c0c12;
+
+padding:20px;
+
+border-left:5px solid #b026ff;
+
+border-radius:10px;
+
+}
+
+
+
+.card h3{
+
+color:#b026ff;
+
+}
+
+
+
+.valor{
+
+font-size:25px;
+
+font-weight:bold;
+
+color:#00ff99;
+
+margin-top:10px;
+
+}
+
+
+
+table{
+
+margin-top:30px;
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+
+th{
+
+background:#6a0dad;
+
+}
+
+
+td,th{
+
+padding:12px;
+
+border:1px solid #333;
+
+}
+
+
+
+.footer{
+
+text-align:center;
+
+margin-top:30px;
+
+color:#777;
+
+}
+
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+<h1>🖤 Dark Tattoo Calculator 🖤</h1>
+
+
+<div class="grid">
+
+
+<div>
+<label>Fecha</label>
+<input type="date" id="fecha">
+</div>
+
+
+<div>
+<label>Tarifa por hora (Q)</label>
+<input type="number" id="tarifa" value="150">
+</div>
+
+
+
+<div>
+<label>Horas estimadas</label>
+<input type="number" id="horas" value="3">
+</div>
+
+
+
+<div>
+<label>Comisión del estudio</label>
+
+<select id="estudio">
+
+<option value="0.30">
+30% Estudio
+</option>
+
+<option value="0.25">
+25% Estudio
+</option>
+
+</select>
+
+</div>
+
+
+
+<div>
+
+<label>Cantidad de agujas</label>
+
+<select id="agujas">
+
+<option value="1">1 aguja</option>
+<option value="2">2 agujas</option>
+<option value="3">3 agujas</option>
+<option value="4">4 agujas</option>
+<option value="5">5 agujas</option>
+<option value="6">6 agujas</option>
+
+
+</select>
+
+</div>
+
+
+</div>
+
+
+<button onclick="calcular()">
+💀 CALCULAR TATUAJE
+</button>
+
+
+
+<div class="resultados">
+
+
+<div class="card">
+<h3>Precio Mano de Obra</h3>
+<div class="valor" id="mano">Q0</div>
+</div>
+
+
+
+<div class="card">
+<h3>Precio Cliente</h3>
+<div class="valor" id="precio">Q0</div>
+</div>
+
+
+
+<div class="card">
+<h3>Gastos</h3>
+<div class="valor" id="gastos">Q0</div>
+</div>
+
+
+
+<div class="card">
+<h3>Pago Estudio</h3>
+<div class="valor" id="pagoEstudio">Q0</div>
+</div>
+
+
+
+<div class="card">
+<h3>Ganancia Neta</h3>
+<div class="valor" id="ganancia">Q0</div>
+</div>
+
+
+
+</div>
+
+
+
+<table>
+
+<thead>
+
+<tr>
+<th>Concepto</th>
+<th>Costo</th>
+</tr>
+
+</thead>
+
+
+<tbody id="detalle">
+
+
+</tbody>
+
+
+</table>
+
+
+
+<div class="footer">
+
+Dark Tattoo Studio © 2026
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+document.getElementById("fecha").value =
+new Date().toISOString().split("T")[0];
+
+
+
+function dinero(valor){
+
+return "Q "+valor.toFixed(2);
+
+}
+
+
+
+function calcular(){
+
+
+let tarifa =
+Number(document.getElementById("tarifa").value);
+
+
+let horas =
+Number(document.getElementById("horas").value);
+
+
+
+let comision =
+Number(document.getElementById("estudio").value);
+
+
+
+let cantidadAgujas =
+Number(document.getElementById("agujas").value);
+
+
+
+/* INGRESO */
+
+let manoObra =
+tarifa * horas;
+
+
+
+let diseño = 100;
+
+let propina = 50;
+
+
+
+let precioCliente =
+manoObra + diseño + propina;
+
+
+
+/* GASTOS */
+
+
+let agujas =
+10 * cantidadAgujas;
+
+
+let guantes=10;
+
+let tinta=10;
+
+let vaselina=15;
+
+let toallas=20;
+
+let jabon=5;
+
+let luz=2;
+
+
+
+let gastos =
+
+agujas+
+guantes+
+tinta+
+vaselina+
+toallas+
+jabon+
+luz;
+
+
+
+/* ESTUDIO */
+
+
+let pagoEstudio =
+precioCliente * comision;
+
+
+
+let ganancia =
+
+precioCliente -
+pagoEstudio -
+gastos;
+
+
+
+document.getElementById("mano").innerHTML=
+dinero(manoObra);
+
+
+
+document.getElementById("precio").innerHTML=
+dinero(precioCliente);
+
+
+
+document.getElementById("gastos").innerHTML=
+dinero(gastos);
+
+
+
+document.getElementById("pagoEstudio").innerHTML=
+dinero(pagoEstudio);
+
+
+
+document.getElementById("ganancia").innerHTML=
+dinero(ganancia);
+
+
+
+document.getElementById("detalle").innerHTML=`
+
+<tr>
+<td>Diseño</td>
+<td>${dinero(diseño)}</td>
+</tr>
+
+
+<tr>
+<td>Propina</td>
+<td>${dinero(propina)}</td>
+</tr>
+
+
+<tr>
+<td>Agujas (${cantidadAgujas})</td>
+<td>${dinero(agujas)}</td>
+</tr>
+
+
+<tr>
+<td>Guantes</td>
+<td>${dinero(guantes)}</td>
+</tr>
+
+
+<tr>
+<td>Tinta</td>
+<td>${dinero(tinta)}</td>
+</tr>
+
+
+<tr>
+<td>Vaselina</td>
+<td>${dinero(vaselina)}</td>
+</tr>
+
+
+<tr>
+<td>Toallas</td>
+<td>${dinero(toallas)}</td>
+</tr>
+
+
+<tr>
+<td>Jabón</td>
+<td>${dinero(jabon)}</td>
+</tr>
+
+
+<tr>
+<td>Luz</td>
+<td>${dinero(luz)}</td>
+</tr>
+
+
+`;
+
+
+}
+
+
+
+</script>
+
+
+</body>
+
+</html>
