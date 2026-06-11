@@ -1,1 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculadora de Transporte</title>
 
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f4f6f9;
+    padding:30px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    background:white;
+    padding:25px;
+    border-radius:15px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+h1{
+    text-align:center;
+    margin-bottom:25px;
+    color:#1f2937;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:15px;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+}
+
+label{
+    margin-bottom:5px;
+    font-weight:bold;
+    color:#374151;
+}
+
+input{
+    padding:10px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:15px;
+}
+
+button{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    background:#2563eb;
+    color:white;
+    font-size:18px;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#1d4ed8;
+}
+
+.results{
+    margin-top:25px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:15px;
+}
+
+.card{
+    background:#f9fafb;
+    padding:15px;
+    border-radius:10px;
+    border-left:5px solid #2563eb;
+}
+
+.card h3{
+    margin-bottom:10px;
+    color:#111827;
+}
+
+.value{
+    font-size:24px;
+    font-weight:bold;
+    color:#16a34a;
+}
+
+.negativo{
+    color:red;
+}
+
+table{
+    width:100%;
+    margin-top:20px;
+    border-collapse:collapse;
+}
+
+th,td{
+    border:1px solid #ddd;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#2563eb;
+    color:white;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>🚚 Calculadora de Costos y Ganancias de Transporte</h1>
+
+<div class="grid">
+
+<div class="form-group">
+<label>Kilómetros Recorridos</label>
+<input type="number" id="km" value="350">
+</div>
+
+<div class="form-group">
+<label>Precio Cobrado al Cliente ($)</label>
+<input type="number" id="precio" value="500">
+</div>
+
+<div class="form-group">
+<label>Combustible ($)</label>
+<input type="number" id="combustible" value="120">
+</div>
+
+<div class="form-group">
+<label>Peajes ($)</label>
+<input type="number" id="peajes" value="35">
+</div>
+
+<div class="form-group">
+<label>Viáticos ($)</label>
+<input type="number" id="viaticos" value="50">
+</div>
+
+<div class="form-group">
+<label>Mantenimiento ($)</label>
+<input type="number" id="mantenimiento" value="25">
+</div>
+
+<div class="form-group">
+<label>Depreciación ($)</label>
+<input type="number" id="depreciacion" value="20">
+</div>
+
+<div class="form-group">
+<label>Otros Gastos ($)</label>
+<input type="number" id="otros" value="10">
+</div>
+
+</div>
+
+<button onclick="calcular()">CALCULAR</button>
+
+<div class="results">
+
+<div class="card">
+<h3>Costo Total</h3>
+<div id="costoTotal" class="value">$0</div>
+</div>
+
+<div class="card">
+<h3>Ganancia</h3>
+<div id="ganancia" class="value">$0</div>
+</div>
+
+<div class="card">
+<h3>Margen</h3>
+<div id="margen" class="value">0%</div>
+</div>
+
+<div class="card">
+<h3>Ganancia por Km</h3>
+<div id="gananciaKm" class="value">$0</div>
+</div>
+
+</div>
+
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody id="detalle"></tbody>
+</table>
+
+</div>
+
+<script>
+
+function moneda(valor){
+    return "$" + valor.toFixed(2);
+}
+
+function calcular(){
+
+    const km = Number(document.getElementById("km").value);
+    const precio = Number(document.getElementById("precio").value);
+    const combustible = Number(document.getElementById("combustible").value);
+    const peajes = Number(document.getElementById("peajes").value);
+    const viaticos = Number(document.getElementById("viaticos").value);
+    const mantenimiento = Number(document.getElementById("mantenimiento").value);
+    const depreciacion = Number(document.getElementById("depreciacion").value);
+    const otros = Number(document.getElementById("otros").value);
+
+    const costoTotal =
+        combustible +
+        peajes +
+        viaticos +
+        mantenimiento +
+        depreciacion +
+        otros;
+
+    const ganancia = precio - costoTotal;
+
+    const margen =
+        precio > 0
+        ? (ganancia / precio) * 100
+        : 0;
+
+    const gananciaKm =
+        km > 0
+        ? ganancia / km
+        : 0;
+
+    document.getElementById("costoTotal").innerHTML =
+        moneda(costoTotal);
+
+    const gananciaElemento =
+        document.getElementById("ganancia");
+
+    gananciaElemento.innerHTML =
+        moneda(ganancia);
+
+    if(ganancia < 0){
+        gananciaElemento.classList.add("negativo");
+    }else{
+        gananciaElemento.classList.remove("negativo");
+    }
+
+    document.getElementById("margen").innerHTML =
+        margen.toFixed(2) + "%";
+
+    document.getElementById("gananciaKm").innerHTML =
+        moneda(gananciaKm);
+
+    document.getElementById("detalle").innerHTML = `
+        <tr>
+            <td>Ingresos</td>
+            <td>${moneda(precio)}</td>
+        </tr>
+        <tr>
+            <td>Costos Totales</td>
+            <td>${moneda(costoTotal)}</td>
+        </tr>
+        <tr>
+            <td>Ganancia</td>
+            <td>${moneda(ganancia)}</td>
+        </tr>
+        <tr>
+            <td>Margen (%)</td>
+            <td>${margen.toFixed(2)}%</td>
+        </tr>
+    `;
+}
+
+calcular();
+
+</script>
+
+</body>
+</html>
