@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
-<head> 
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculadora de Transporte</title>
@@ -141,7 +141,7 @@ th,td{
 <div class="form-group">
 <label>Vehículo</label>
 <select id="vehiculo">
-<option value="35">Urvan (35 km/galón)</option>
+<option value="45">Urvan (45 km/galón)</option>
 <option value="70">Yaris (70 km/galón)</option>
 </select>
 </div>
@@ -158,7 +158,7 @@ th,td{
 
 <div class="form-group">
 <label>Precio del galón (Q)</label>
-<input type="number" step="0.01" id="precioGalon" placeholder="Pon el precio que pagasta le ultima factura">
+<input type="number" step="0.01" id="precioGalon" placeholder="Ej. 32.50">
 </div>
 
 </div>
@@ -190,7 +190,7 @@ th,td{
 </div>
 
 <div class="card">
-<h3>Precio Sugerido (+90%)</h3>
+<h3>Precio Sugerido (+80%)</h3>
 <div class="value" id="precioVenta">Q0</div>
 </div>
 
@@ -217,35 +217,10 @@ th,td{
 
 </div>
 
-<div class="botones">
-    <button onclick="calcular()">📊 Calcular</button>
+<div class="footer">
+Sistema de Costos de Transporte
+</div>
 
-    <button onclick="location.reload()">
-        🔄 Refrescar
-    </button>
-</div>
-    
-</div> <button id="btnVolver">
-    ⬅ Regresar
-</button>
-<script>
-document.getElementById("btnVolver").addEventListener("click", function(){
-    window.location.href = "index.html";
-});
-    <div class="footer">
-Sistema de Costos de Transporte
-</div>
-<div>
-</script>
-<script>
-document.getElementById("btnVolver").addEventListener("click", function(){
-    window.location.href = "index.html";
-});
-    <div class="footer">
-Sistema de Costos de Transporte
-</div>
-<div>
-</script>
 </div>
 
 <script>
